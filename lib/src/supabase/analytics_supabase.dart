@@ -33,7 +33,7 @@ class SupabaseAnalytics extends Analytics {
     if (!_isSessionSaved) {
       final response = await _supabaseClient.from('sessions').upsert([
         {
-          'uuid': session.uuid,
+          'id': session.uuid,
           'os': session.os,
           'version': session.version,
           'locale': session.locale,
