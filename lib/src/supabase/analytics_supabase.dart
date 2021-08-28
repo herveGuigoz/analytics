@@ -5,7 +5,7 @@ import 'package:supabase_analytics/src/core/analytics_core.dart';
 
 export 'package:supabase/supabase.dart' show SupabaseClient;
 
-const _kTableName = 'actions';
+const _kTableName = 'analytics';
 
 /// {@template supabase_analytics}
 /// Implementation of [Analytics] with Supabase API
@@ -26,38 +26,15 @@ class SupabaseAnalytics extends Analytics {
   /// Table name on Supabase Postgres schema
   final String tableName;
 
-  bool _isSessionSaved = false;
-
-  /// Upsert current device informations
-  Future<bool> _saveSession() async {
-    if (!_isSessionSaved) {
-      final response = await _supabaseClient.from('sessions').upsert([
-        {
-          'id': session.uuid,
-          'os': session.os,
-          'locale': session.locale,
-        }
-      ]).execute();
-
-      if (response.error != null) log(response.error!.message);
-
-      return _isSessionSaved = response.error == null;
-    }
-
-    return true;
-  }
-
   @override
   Future<void> logEvent({
     required String event,
     Map<String, Object?>? params,
   }) async {
-    if (await _saveSession()) {
-      final response = await _supabaseClient.from(tableName).insert([
-        {'session_id': session.uuid, 'event': event, 'data': params}
-      ]).execute();
+    final response = await _supabaseClient.from(tableName).insert([
+      {'session_id': session.uuid, 'event': event, 'data': params}
+    ]).execute();
 
-      if (response.error != null) log(response.error!.message);
-    }
+    if (response.error != null) log(response.error!.message);
   }
 }

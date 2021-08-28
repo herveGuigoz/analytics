@@ -24,15 +24,16 @@ abstract class Analytics {
     );
   }
 
-  /// Logs analytics event with the given [AnalyticEvent] and [params].
+  /// Logs analytics event with the given [event] and [params].
   Future<void> logEvent({required String event, Map<String, Object?>? params});
 
   /// Logs the standard `app_open` event.
-  Future<void> logAppOpen({required int userId}) async {
+  Future<void> logAppOpen() async {
     return logEvent(
       event: AnalyticEvent.appOpen,
       params: filterOutNulls({
-        'user_id': userId,
+        'os': session.os,
+        'locale': session.locale,
       }),
     );
   }
@@ -174,7 +175,7 @@ abstract class AnalyticEvent {
   /// User log out
   static String logOut = 'logout';
 
-  /// New screnn pushed
+  /// New screen pushed
   static String screenViewed = 'screen_viewed';
 
   /// User joined group
