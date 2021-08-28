@@ -35,7 +35,6 @@ class SupabaseAnalytics extends Analytics {
         {
           'id': session.uuid,
           'os': session.os,
-          'version': session.version,
           'locale': session.locale,
         }
       ]).execute();
