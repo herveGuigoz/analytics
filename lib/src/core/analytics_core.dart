@@ -28,10 +28,11 @@ abstract class Analytics {
   Future<void> logEvent({required String event, Map<String, Object?>? params});
 
   /// Logs the standard `app_open` event.
-  Future<void> logAppOpen() async {
+  Future<void> logAppOpen({String? appVersion}) async {
     return logEvent(
       event: AnalyticEvent.appOpen,
       params: filterOutNulls({
+        'appVersion': appVersion,
         'os': session.os,
         'locale': session.locale,
       }),
@@ -42,59 +43,40 @@ abstract class Analytics {
   /// app. The parameter signifies the method by which the user signed up. Use
   /// this event to understand the different behaviors between logged in and
   /// logged out users.
-  Future<void> logSignUp({required int userId}) {
+  Future<void> logSignUp({String? method}) {
     return logEvent(
       event: AnalyticEvent.signUp,
-      params: filterOutNulls({
-        'user_id': userId,
-      }),
+      params: filterOutNulls({'method': method}),
     );
   }
 
   /// Apps with a login feature can report this event to signify that a user
   /// has logged in.
-  Future<void> logLogin({required int userId}) {
+  Future<void> logLogin({
+    String? method,
+  }) {
     return logEvent(
       event: AnalyticEvent.login,
-      params: filterOutNulls({
-        'user_id': userId,
-      }),
-    );
-  }
-
-  /// Apps with a login feature can report this event to signify that a user
-  /// has logged out.
-  Future<void> logLogout({required int userId}) {
-    return logEvent(
-      event: AnalyticEvent.logOut,
-      params: filterOutNulls({
-        'user_id': userId,
-      }),
+      params: filterOutNulls({'method': method}),
     );
   }
 
   /// This helps identify the areas in your app where users spend their time
   /// and how they interact with your app.
-  Future<void> setCurrentScreen({int? userId, required String? screenName}) {
+  Future<void> setCurrentScreen({required String? screenName}) {
     return logEvent(
       event: AnalyticEvent.screenViewed,
-      params: filterOutNulls({
-        'user_id': userId,
-        'screen': screenName,
-      }),
+      params: filterOutNulls({'screen': screenName}),
     );
   }
 
   /// Log this event when a user joins a group such as a guild, team or family.
   /// Use this event to analyze how popular certain groups or social features
   /// are in your app.
-  Future<void> logJoinGroup({required int userId, required String groupId}) {
+  Future<void> logJoinGroup({required String groupId}) {
     return logEvent(
       event: AnalyticEvent.joinedGroup,
-      params: filterOutNulls({
-        'user_id': userId,
-        'group_id': groupId,
-      }),
+      params: filterOutNulls({'group_id': groupId}),
     );
   }
 
