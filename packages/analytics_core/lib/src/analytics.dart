@@ -1,7 +1,7 @@
-import 'dart:io';
+import 'package:analytics_core/src/events.dart';
+import 'package:analytics_core/src/observer.dart';
+import 'package:analytics_core/src/session.dart';
 import 'package:flutter/foundation.dart';
-import 'package:supabase_analytics/src/core/analytics_observer.dart';
-import 'package:uuid/uuid.dart';
 
 /// {@template analytics}
 /// Analytics API
@@ -115,57 +115,4 @@ abstract class Analytics {
     });
     return filtered;
   }
-}
-
-/// {@template analytics}
-/// Information about current user
-/// {@endtemplate}
-class AnalyticsSession {
-  /// {@macro analytics}
-  factory AnalyticsSession() => _instance ??= AnalyticsSession._();
-
-  AnalyticsSession._()
-      : uuid = const Uuid().v1(),
-        os = Platform.operatingSystem,
-        locale = Platform.localeName;
-
-  static AnalyticsSession? _instance;
-
-  /// Unique identifier for current analytics session.
-  final String uuid;
-
-  /// The operating system or platform.
-  final String os;
-
-  /// The name of the current locale.
-  final String locale;
-}
-
-/// {@template analytic_event}
-/// In app events
-/// {@endtemplate}
-abstract class AnalyticEvent {
-  /// App started
-  static String appOpen = 'app_open';
-
-  /// User sign up
-  static String signUp = 'sign_up';
-
-  /// User log in
-  static String login = 'login';
-
-  /// User log out
-  static String logOut = 'logout';
-
-  /// New screen pushed
-  static String screenViewed = 'screen_viewed';
-
-  /// User joined group
-  static String joinedGroup = 'joined_group';
-
-  /// User pressed list item
-  static String viewedItem = 'viewed_item';
-
-  /// User shared ressource
-  static String shared = 'shared';
 }

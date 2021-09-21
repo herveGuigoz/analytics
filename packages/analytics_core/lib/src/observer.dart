@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:supabase_analytics/src/core/analytics_core.dart';
+
+import 'analytics.dart';
 
 /// Signature for a function that extracts a screen name from [RouteSettings].
 ///

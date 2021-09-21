@@ -1,18 +1,21 @@
 name: supabase_analytics
-description: A Very Good Project created by Very Good CLI.
-version: 1.0.0+1
+description: A new Flutter package project.
+version: 0.0.1
 publish_to: none
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-
+  flutter: ">=1.17.0"
+  
 dependencies:
+  analytics_core:
+    path: ../analytics_core
   flutter:
     sdk: flutter
   supabase: ^0.2.4
-  uuid: ^3.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^2.3.0
+  flutter_lints: ^1.0.0
+flutter:
