@@ -11,6 +11,7 @@ To use this core analytics plugin, add analytics_core as a dependency in your pu
 ```yaml
 dependencies:
   analytics_core:
-    git: git@github.com:herveGuigoz/analytics.git
-    path: packages/analytics_core
+    git:
+      url: git@github.com:herveGuigoz/analytics.git
+      path: packages/analytics_core
 ```

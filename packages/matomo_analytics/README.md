@@ -30,8 +30,9 @@ To use this plugin, add supabase_analytics as a dependency in your pubspec.yaml 
 ```yaml
 dependencies:
   matomo_analytics:
-    git: git@github.com:herveGuigoz/analytics.git
-    path: packages/matomo_analytics
+    git:
+      url: git@github.com:herveGuigoz/analytics.git
+      path: packages/matomo_analytics
 ```
 
 ## Additional information
