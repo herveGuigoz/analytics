@@ -9,7 +9,9 @@ environment:
   
 dependencies:
   analytics_core:
-    path: ../analytics_core
+    git:
+      url: git@github.com:herveGuigoz/analytics.git
+      path: packages/analytics_core
   flutter:
     sdk: flutter
   supabase: ^0.2.4
