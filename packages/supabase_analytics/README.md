@@ -45,7 +45,8 @@ To use this plugin, add supabase_analytics as a dependency in your pubspec.yaml 
 ```yaml
 dependencies:
   supabase_analytics:
-    git: git@github.com:herveGuigoz/supabase_analytics.git
+    git: git@github.com:herveGuigoz/analytics.git
+    path: packages/supabase_analytics
 ```
 
 ## Additional information

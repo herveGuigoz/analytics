@@ -25,11 +25,13 @@ start using the package.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+To use this plugin, add supabase_analytics as a dependency in your pubspec.yaml file:
 
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  matomo_analytics:
+    git: git@github.com:herveGuigoz/analytics.git
+    path: packages/matomo_analytics
 ```
 
 ## Additional information
